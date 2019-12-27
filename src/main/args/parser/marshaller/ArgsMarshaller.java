@@ -7,5 +7,9 @@ import java.util.Optional;
 
 public interface ArgsMarshaller<T> {
 
-    Optional<T> parse(MainArg value);
+    Optional<T> parse(MainArg value, String key);
+
+    default void test(MainArg value) throws ArgsException {
+        this.parse(value, null);
+    };
 }

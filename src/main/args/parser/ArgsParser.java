@@ -44,12 +44,24 @@ public class ArgsParser {
                 String key = arg.substring(1);
                 String value = args[i + 1];
                 ArgsType type = this.mapping.get(key);
-                arguments.put(key, MainArg.of(value, type));
+                if (type != null) {
+                    arguments.put(key, MainArg.of(value, type));
+                }
                 i += 2;
             } else {
                 i++;
             }
         }
+
+        validateArguments(arguments);
+
         return new Args(arguments);
+    }
+
+    private void validateArguments(Map<String, MainArg> arguments) {
+        for (MainArg value : arguments.values()) {
+            value.validate();
+        }
+
     }
 }

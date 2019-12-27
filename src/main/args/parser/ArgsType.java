@@ -1,21 +1,25 @@
 package args.parser;
 
+import args.parser.marshaller.*;
+
 import java.util.Arrays;
 import java.util.Objects;
 
 public enum  ArgsType {
-    Bool(""),
-    String("*"),
-    Integer("#"),
-    Double("##"),
-    StringArray("[*]"),
-    StringMap("&"),
+    Bool("", new BooleanMarshaller()),
+    String("*", new StringMarshaller()),
+    Integer("#", new IntegerMarshaller()),
+    Double("##", new DoubleMarshaller()),
+    StringArray("[*]", new BooleanMarshaller()),
+    StringMap("&", new BooleanMarshaller()),
     ;
 
     private final String code;
+    private ArgsMarshaller<?> marshaller;
 
-    ArgsType(String s) {
+    ArgsType(String s, ArgsMarshaller<?> marshaller) {
         this.code = s;
+        this.marshaller = marshaller;
     }
 
     public java.lang.String getCode() {
@@ -30,4 +34,7 @@ public enum  ArgsType {
                 .orElseThrow(() -> new ArgsException("Invalid Pattern argument"));
     }
 
+    public void validate(MainArg value) {
+        this.marshaller.test(value);
+    }
 }

@@ -8,7 +8,7 @@ import java.util.Optional;
 public class StringMarshaller implements ArgsMarshaller<String> {
 
     @Override
-    public Optional<String> parse(MainArg value) {
+    public Optional<String> parse(MainArg value, String key) {
         return Optional.ofNullable(value)
                 .map(v -> v.getValue(ArgsType.String));
     }

@@ -20,4 +20,8 @@ public class MainArg {
         }
         return value;
     }
+
+    public void validate() {
+        this.type.validate(this);
+    }
 }
