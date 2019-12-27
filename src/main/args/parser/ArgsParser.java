@@ -50,7 +50,7 @@ public class ArgsParser {
                 TypedArgument typedArgument = getTypedArgument(keyWithPrefix, argument);
                 arguments.put(typedArgument.getKey(), typedArgument);
             }
-            index++;//Could be +2 if we enter the If, as then the next is an argument, and thus not a key.
+            index++; // FIXME: //Could be +2 if we enter the If, as then the next is an argument, and thus not a key.
         }
         return arguments;
     }
