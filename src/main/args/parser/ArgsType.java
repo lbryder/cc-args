@@ -10,7 +10,7 @@ public enum  ArgsType {
     String("*", new StringMarshaller()),
     Integer("#", new IntegerMarshaller()),
     Double("##", new DoubleMarshaller()),
-    StringArray("[*]", new BooleanMarshaller()),
+    StringArray("[*]", new StringArrayMarshaller()),
     StringMap("&", new BooleanMarshaller()),
     ;
 
@@ -34,7 +34,7 @@ public enum  ArgsType {
                 .orElseThrow(() -> new ArgsException("Invalid Pattern argument"));
     }
 
-    public void validate(MainArg value) {
+    public void validate(TypedArgument value) {
         this.marshaller.test(value);
     }
 }

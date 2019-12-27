@@ -1,15 +1,17 @@
 package args.parser;
 
-public class MainArg {
+public class TypedArgument {
 
+    private String key;
     private String value;
     private ArgsType type;
 
-    public static MainArg of(String value, ArgsType type) {
-        return new MainArg(value, type);
+    public static TypedArgument of(String key, String value, ArgsType type) {
+        return new TypedArgument(key, value, type);
     }
 
-    private MainArg(String value, ArgsType type) {
+    private TypedArgument(String key, String value, ArgsType type) {
+        this.key = key;
         this.value = value;
         this.type = type;
     }
@@ -23,5 +25,13 @@ public class MainArg {
 
     public void validate() {
         this.type.validate(this);
+    }
+
+    public String getKey() {
+        return key;
+    }
+
+    public String getString() {
+        return value;
     }
 }

@@ -1,15 +1,15 @@
 package args.parser.marshaller;
 
 import args.parser.ArgsException;
-import args.parser.MainArg;
+import args.parser.TypedArgument;
 
 import java.util.Optional;
 
 public interface ArgsMarshaller<T> {
 
-    Optional<T> parse(MainArg value, String key);
+    Optional<T> parse(TypedArgument value);
 
-    default void test(MainArg value) throws ArgsException {
-        this.parse(value, null);
+    default void test(TypedArgument value) throws ArgsException {
+        this.parse(value);
     };
 }
