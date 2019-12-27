@@ -11,7 +11,7 @@ public enum  ArgsType {
     Integer("#", new IntegerMarshaller()),
     Double("##", new DoubleMarshaller()),
     StringArray("[*]", new StringArrayMarshaller()),
-    StringMap("&", new BooleanMarshaller()),
+    StringMap("&", new StringMarshaller()), //TODO: Add marshaller.
     ;
 
     private final String code;
