@@ -10,7 +10,7 @@ public class BooleanMarshaller implements ArgsMarshaller<Boolean> {
     @Override
     public Optional<Boolean> parse(TypedArgument value) {
         return Optional.ofNullable(value)
-                .map(v -> v.getValue(ArgsType.Bool))
+                .map(v -> v.getValueOfType(ArgsType.Bool))
                 .map(Boolean::valueOf);
     }
 }

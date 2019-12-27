@@ -10,7 +10,7 @@ public class IntegerMarshaller implements ArgsMarshaller<Integer> {
     @Override
     public Optional<Integer> parse(TypedArgument value) {
         return Optional.ofNullable(value)
-                .map(v -> v.getValue(ArgsType.Integer))
+                .map(v -> v.getValueOfType(ArgsType.Integer))
                 .map(Integer::valueOf);
     }
 }

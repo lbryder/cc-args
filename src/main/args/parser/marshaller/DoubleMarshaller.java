@@ -12,10 +12,10 @@ public class DoubleMarshaller implements ArgsMarshaller<Double> {
     public Optional<Double> parse(TypedArgument value) {
         try {
             return Optional.ofNullable(value)
-                    .map(v -> v.getValue(ArgsType.Double))
+                    .map(v -> v.getValueOfType(ArgsType.Double))
                     .map(Double::valueOf);
         } catch (NumberFormatException e) {
-            throw new ArgsException("Invalid Double for param: " + value.getKey() + " , it was: " + value.getString());
+            throw new ArgsException("Invalid Double for param: " + value.getKey() + " , it was: " + value.getValueAsString());
         }
     }
 }

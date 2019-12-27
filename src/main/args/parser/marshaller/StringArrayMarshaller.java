@@ -10,7 +10,7 @@ public class StringArrayMarshaller implements ArgsMarshaller<String[]> {
     @Override
     public Optional<String[]> parse(TypedArgument value) {
         return  Optional.ofNullable(value)
-                .map(v-> v.getValue(ArgsType.StringArray))
+                .map(v-> v.getValueOfType(ArgsType.StringArray))
                 .map(this::parseStringArray);
     }
 

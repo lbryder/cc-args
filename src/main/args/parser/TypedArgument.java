@@ -16,7 +16,15 @@ public class TypedArgument {
         this.type = type;
     }
 
-    public String getValue(ArgsType expectedType) {
+    public String getKey() {
+        return key;
+    }
+
+    public String getValueAsString() {
+        return value;
+    }
+
+    public String getValueOfType(ArgsType expectedType) {
         if (expectedType != this.type) {
             throw new ArgsException("Type not as expected");
         }
@@ -25,13 +33,5 @@ public class TypedArgument {
 
     public void validate() {
         this.type.validate(this);
-    }
-
-    public String getKey() {
-        return key;
-    }
-
-    public String getString() {
-        return value;
     }
 }

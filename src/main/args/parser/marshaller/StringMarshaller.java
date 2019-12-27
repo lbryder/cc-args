@@ -10,6 +10,10 @@ public class StringMarshaller implements ArgsMarshaller<String> {
     @Override
     public Optional<String> parse(TypedArgument value) {
         return Optional.ofNullable(value)
-                .map(v -> v.getValue(ArgsType.String));
+                .map(v -> v.getValueOfType(getType()));
+    }
+
+    public ArgsType getType() {
+        return ArgsType.String;
     }
 }
