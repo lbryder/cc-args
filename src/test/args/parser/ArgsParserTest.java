@@ -31,6 +31,14 @@ class ArgsParserTest {
     }
 
     @Test
+    void parse_bad_Int() {
+        Assertions.assertThrows(NumberFormatException.class, () -> {
+            ArgsParser parser = ArgsParser.fromMap(ImmutableMap.of("x", ArgsType.Integer));
+            Args args = parser.parse("-x", "abc");
+       });
+    }
+
+    @Test
     void noArgumentForKey() {
         ArgsParser parser = ArgsParser.fromMap(ImmutableMap.of("x", ArgsType.Bool));
         Args args = parser.parse("-x");
