@@ -11,6 +11,7 @@ public class IntegerMarshaller implements ArgsMarshaller<Integer> {
     public Optional<Integer> parse(TypedArgument value) {
         return Optional.ofNullable(value)
                 .map(v -> v.getValueOfType(ArgsType.Integer))
+                .map(v -> v.replace("\\",""))
                 .map(Integer::valueOf);
     }
 }

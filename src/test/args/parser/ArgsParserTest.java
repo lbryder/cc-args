@@ -24,10 +24,10 @@ class ArgsParserTest {
     @Test
     void parse_negative_Int() {
         ArgsParser parser = ArgsParser.fromMap(ImmutableMap.of("x", ArgsType.Integer));
-        Args args = parser.parse("-x", "-120");
+        Args args = parser.parse("-x", "\\-120");
 
         Integer actual = args.getInt("x").orElse(0);
-        Assertions.assertEquals(120, actual);
+        Assertions.assertEquals(-120, actual);
     }
 
     @Test
