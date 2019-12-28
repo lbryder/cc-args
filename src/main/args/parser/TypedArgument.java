@@ -1,5 +1,7 @@
 package args.parser;
 
+import java.util.Optional;
+
 public class TypedArgument {
 
     private String key;
@@ -33,5 +35,9 @@ public class TypedArgument {
 
     public void validate() {
         this.type.validate(this);
+    }
+
+    public Optional<?> parse() {
+        return type.getMarshaller().parse(this);
     }
 }

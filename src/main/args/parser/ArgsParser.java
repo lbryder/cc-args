@@ -20,8 +20,8 @@ public class ArgsParser {
     }
 
     public static ArgsParser fromPattern(String pattern) {
-        String[] split = pattern.split(",");
-        Map<String, ArgsType> collect = Arrays.stream(split)
+        String[] splitPattern = pattern.split(",");
+        Map<String, ArgsType> collect = Arrays.stream(splitPattern)
                 .collect(Collectors.toMap(ArgsParser::getKeyFromPattern, ArgsParser::getTypeFromPattern));
         return new ArgsParser(collect);
     }
@@ -43,14 +43,14 @@ public class ArgsParser {
     private HashMap<String, TypedArgument> parseToArgumentMap(String[] args) {
         HashMap<String, TypedArgument> arguments = new HashMap<>();
         int index = 0;
-        while (index+1 < args.length) {
+        while (index + 1 < args.length) {
             String keyWithPrefix = args[index];
-            String argument = args[index+1];
+            String argument = args[index + 1];
             if (shouldAddToArguments(keyWithPrefix, argument)) {
                 TypedArgument typedArgument = getTypedArgument(keyWithPrefix, argument);
                 arguments.put(typedArgument.getKey(), typedArgument);
             }
-            index++; // FIXME: //Could be +2 if we enter the If, as then the next is an argument, and thus not a key.
+            index++; //NOTE: Could be +2 if we find a key/value pair (i.e. enter the If), as then the next is an argument, and thus not a key.
         }
         return arguments;
     }

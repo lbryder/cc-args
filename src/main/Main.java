@@ -8,7 +8,7 @@ public class Main {
     private static ArgsParser parser = ArgsParser.fromPattern("l,p#,d*");
     private static ArgsParser parser_map = ArgsParser.fromMap(ImmutableMap.of(
             "l", ArgsType.Bool,
-            "p",ArgsType.Integer,
+            "p", ArgsType.Integer,
             "d", ArgsType.String,
             "kk", ArgsType.Double
     ));
@@ -47,4 +47,3 @@ public class Main {
 //        - char[*] - one element of a string array.
 //
 //        Example schema: (f,s*,n#,a##,p[*])
-//        Coresponding command line: "-f -s Bob -n 1 -a 3.2 -p e1 -p e2 -p e3

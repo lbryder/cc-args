@@ -26,7 +26,7 @@ class ArgsParserTest {
         ArgsParser parser = ArgsParser.fromMap(ImmutableMap.of("x", ArgsType.Integer));
         Args args = parser.parse("-x", "\\-120");
 
-        Integer actual = args.getInt("x").orElse(0);
+        Integer actual = args.getInt_with_casting("x").orElse(0);
         Assertions.assertEquals(-120, actual);
     }
 
@@ -35,7 +35,7 @@ class ArgsParserTest {
         Assertions.assertThrows(NumberFormatException.class, () -> {
             ArgsParser parser = ArgsParser.fromMap(ImmutableMap.of("x", ArgsType.Integer));
             Args args = parser.parse("-x", "abc");
-       });
+        });
     }
 
     @Test
@@ -51,7 +51,7 @@ class ArgsParserTest {
     void stringArray() {
         String[] expected = {"a", "hej", "1234"};
         ArgsParser parser = ArgsParser.fromMap(ImmutableMap.of("x", ArgsType.StringArray));
-        Args args = parser.parse("-x", "a,hej,1234");
+        Args args = parser.parse("-x", "a,hej, 1234");
         String[] actual = args.getArray("x").get();
 
         assertThat(actual.length, Matchers.equalTo(expected.length));

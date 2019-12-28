@@ -1,7 +1,10 @@
 package args;
 
 import args.parser.TypedArgument;
-import args.parser.marshaller.*;
+import args.parser.marshaller.BooleanMarshaller;
+import args.parser.marshaller.DoubleMarshaller;
+import args.parser.marshaller.IntegerMarshaller;
+import args.parser.marshaller.StringArrayMarshaller;
 
 import java.util.Collection;
 import java.util.Map;
@@ -26,9 +29,13 @@ public class Args {
 
     }
 
+    public Optional<Integer> getInt_with_casting(String key) {
+        return getParsedObjectFor(key).map(Integer.class::cast);
+    }
+
     public Optional<String> getString(String key) {
-        StringMarshaller marshaller = new StringMarshaller();
-        return marshaller.parse(argumentFor(key));
+        return getParsedObjectFor(key)
+                .map(String.class::cast);
     }
 
     public Optional<Double> getDouble(String key) {
@@ -39,6 +46,11 @@ public class Args {
     public Optional<String[]> getArray(String key) {
         StringArrayMarshaller marshaller = new StringArrayMarshaller();
         return marshaller.parse(argumentFor(key));
+    }
+
+    private Optional<Object> getParsedObjectFor(String key) {
+        return Optional.ofNullable(argumentFor(key))
+                .flatMap(TypedArgument::parse);
     }
 
     private TypedArgument argumentFor(String key) {
